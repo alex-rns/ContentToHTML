@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'content_to_html'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2020-11-15'
   s.summary     = "-> to HTML"
   s.description = "Gem takes content and saves it to HTML"
