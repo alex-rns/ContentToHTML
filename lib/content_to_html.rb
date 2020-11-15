@@ -1,22 +1,22 @@
-# frozen_string_literal: true
+# frozen_string_literal: false
 
 require 'erb'
 
-def to_html(content, file_name = 'index')
-  output_file = File.expand_path("#{file_name}.html") #=>"page.html"
-  # erb_str = File.read('template.html.erb')
-  erb_str = %(
+def to_html(content, file_name = 'index', bypass_html)
+  bypass_html ? content : content.gsub!(%r{<([^>]+?)([^>]*?)>(.*?)</\1>}, '')
+  output_file = File.expand_path("#{file_name}.html")
+  template = %(
   <html>
   <head>
-    <title>Test</title>
+    <title>Content to HTML</title>
   </head>
   <body>
-    <%= @name %>
+    <%= @content %>
   </body>
   </html>
   )
-  @name = content
-  renderer = ERB.new(erb_str)
+  @content = content
+  renderer = ERB.new(template)
   result = renderer.result
 
   File.open(output_file, 'w') do |f|
@@ -24,3 +24,4 @@ def to_html(content, file_name = 'index')
   end
 end
 
+to_html('<p>Li123fe: </p>' 'ytytyt' '<p>Li12wer3fe: </p>', 'wwww', true)
