@@ -2,7 +2,7 @@
 
 require 'erb'
 
-def to_html(content, bypass_html, file_name = 'index')
+def to_html(content, bypass_html = false, file_name = 'index')
   bypass_html ? content : content.gsub!(%r{<([^>]+?)([^>]*?)>(.*?)</\1>}, '')
   output_file = File.expand_path("#{file_name}.html")
   template =%{<!DOCTYPE html>
